@@ -1,13 +1,13 @@
 # Copyright (C) 2018-2020 L-WRT Team
-# Copyright (C) 2021 xiaorouji
+# Copyright (C) 2021-2022 xiaorouji
 #
 # This is free software, licensed under the GNU General Public License v3.
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
-PKG_VERSION:=4.51
-PKG_RELEASE:=3
+PKG_VERSION:=4.54
+PKG_RELEASE:=1
 
 PKG_CONFIG_DEPENDS:= \
 	CONFIG_PACKAGE_$(PKG_NAME)_Transparent_Proxy \
@@ -69,6 +69,7 @@ config PACKAGE_$(PKG_NAME)_Transparent_Proxy
 	select PACKAGE_ipt2socks
 	select PACKAGE_iptables
 	select PACKAGE_iptables-legacy
+	select PACKAGE_iptables-mod-conntrack-extra
 	select PACKAGE_iptables-mod-iprange
 	select PACKAGE_iptables-mod-socket
 	select PACKAGE_iptables-mod-tproxy
@@ -168,6 +169,7 @@ define Package/$(PKG_NAME)/conffiles
 /usr/share/passwall/rules/block_ip
 /usr/share/passwall/rules/lanlist_ipv4
 /usr/share/passwall/rules/lanlist_ipv6
+/usr/share/passwall/rules/domains_excluded
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
